@@ -10,9 +10,10 @@ public class testing {
 
         System.out.println("Podaj slowo do sprawdzenia");
         String word = u_input.nextLine();
+        final long startTime = System.currentTimeMillis();
 
         for(int krok = 0;krok<word.length();krok++){
-            System.out.println("Jesteśmy w kroku "+krok);
+         //   System.out.println("Jesteśmy w kroku "+krok);
         if(krok%2==0)
         {
             palindrome = parzyste(word,palindrome,krok);
@@ -21,6 +22,8 @@ public class testing {
             palindrome = niepazyste(word,palindrome,krok);
         }
     }
+        final long endTime = System.currentTimeMillis();
+        System.out.println("Total execution time: " + (endTime - startTime));
         System.out.println("Ostateczenie najwiekszy pal to "+ palindrome);
     }
     public static String odwracanie(String input){
@@ -37,15 +40,12 @@ public class testing {
     }
     public static String parzyste(String word,String palindrome, int krok){
         String subone ,subtwo;
-
         for(int i =0 ;i<word.length()-krok-1;i++)
         {
             subone = word.substring(i,i+krok/2+1);
             subtwo = word.substring(i+krok/2+1,i+krok+2);
-
             if(subone.equals(odwracanie(subtwo))){
                 palindrome = word.substring(i,i+krok+2);
-                System.out.println(palindrome);
             }
         }
         return palindrome;
@@ -58,10 +58,8 @@ public class testing {
         for (int i = 0; i < word.length() - krok - 1; i++) {
             subone = word.substring(i,round(pkt_start)-round(flaga/2)+1);
             subtwo = word.substring(i+krok-round(flaga/2)+2,round(krok)+round(pkt_start)-2*round(flaga/2)+3);
-
             if(subone.equals(odwracanie(subtwo))){
                 palindrome = word.substring(i,round(krok)+round(pkt_start)-2*round(flaga/2)+3);
-                System.out.println(palindrome);
             }
             pkt_start++;
         }
